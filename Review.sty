@@ -9,6 +9,7 @@
 \RequirePackage{titlesec}
 \RequirePackage{verbatim}
 \RequirePackage{parskip}
+\RequirePackage{changepage}
 
 \newfloat{review@as@float}{t}{rvw}
 
@@ -53,13 +54,13 @@
         \vspace{0.3cm} \hrule height 1pt \vspace{0.4cm}
         \par
         \centering
-        \begin{minipage}[t]{0.75\textwidth}
+        \begin{adjustwidth}{0.125\textwidth}{0.125\textwidth}
             \setlength{\parindent}{1.5em}
             \noindent \scshape \large R\,e\,v\,i\,e\,w:\vspace{0.2cm}\par
             \normalfont \small
             % Makes the review portion smaller as to make it readable
     }
     {   
-        \end{minipage}
+        \end{adjustwidth}
         \par\newpage
     }

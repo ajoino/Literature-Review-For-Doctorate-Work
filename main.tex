@@ -149,7 +149,33 @@
     
     The LRA algorithm is introduced by first describing VSMs in general and then the specifics of the LRA.
     The important specifics are that LRA uses a pair-pattern matrix.
-    For each pair it can find, it uses a thesaurus to create alternate pairs, so if the original pattern is $A : B$, it also creates the pairs $A' : B$ and $A : B'$.\cite{Kanerva2009Hyperdimensional}
+    For each pair it can find, it uses a thesaurus to create alternate pairs, so if the original pattern is $A : B$, it also creates the pairs $A' : B$ and $A : B'$.
+    Of all these pairs, choose only the most common ones in the corpus.
+    Then patterns that start with and ends with either $A$ or $B$ are selected.
+    The pairs are then mapped to rows of the VSM and the patterns are mapped to columns.
+    This generates a sparse matrix that is then weighted, and SVD is applied for dimensionality reduction.
+    The relational similarity is then the similarity of the row vectors.
+    Some steps are omitted in this description.
+    
+    LRA was tested on SAT questions of the form "$A$ is to $B$ as ?".
+    Five pairs of words are then given and the task is to find the one that best fit the question.
+    Using this LRA had a precision, recall and F-score of 56-57\%, which is slightly better than human average.
+    
+    The LRA seem to perform well but it took around 210 hours to complete the task, which is longer than the 3-4 hours a human have to finish all questions, not just those of this form.
+    And this is the drawback of this algorithm, it is slow due to it having to do multiple corpus lookups.
+    The SVD only took up 0.25\% of the computational time.
+    The author also claims that the code was not optimized for speed, meaning that further improvements could be made.
+    A suggestion is to use hybrid approach, combining the strengths of corpus and lexicon based methods.
+    They also suggest faster methods instead of SVD, but as previously mentioned that will not shave off much of the time.
+    
+    I think this paper is really good, I'm going study it's structure more I think.
+    It would also be cool to see if random indexing could help this, but that (from what I understand) is in place of SVD, and the big improvements can't start there.
+    I'd also like to comment the 209 hour thing.
+    9 days is a lot of time to answer those 300-400 questions, but the LRA was specifically trained to do this.
+    Most english at the age where they can take the SATs have probably used english more than 209 hours.
+    So if there was a way to update this algorithm online it could have some uses, but online SVD doesn't seem like an option from what I read [could use a source here].
+    But as mentioned, the SVM isn't really what's taking time right here.
+    
 \end{review}
 
 \begin{review}{Kanerva2009Hyperdimensional}{}{}
