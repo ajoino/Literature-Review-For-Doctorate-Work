@@ -1,0 +1,65 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Review}[2017/07/05 Literature review environment package]
+
+\RequirePackage{ifthen}
+\RequirePackage{float}
+\RequirePackage{caption}
+\RequirePackage{tocloft}
+\RequirePackage{biblatex}
+\RequirePackage{titlesec}
+\RequirePackage{verbatim}
+\RequirePackage{parskip}
+
+\newfloat{review@as@float}{t}{rvw}
+
+\newcommand{\listreviewname}{List of Literature}
+\newlistof[chapter]{review}{rvw}{\listreviewname}
+
+\DeclareFieldFormat*{citetitle}{#1}
+
+%\setlength{\parskip}{\medskipamount}
+%\newcommand{\@minipagerestore}{\setlength{\parskip}{\medskipamount}}
+
+\newenvironment{review}[3]
+    {   
+        \addcontentsline{rvw}{review}{\citetitle{#1}}
+            % Adds the review to the table of contents
+        \noindent\ignorespaces
+        \LARGE \bfseries \citetitle{#1} \cite{#1} \vspace{0.3cm} \hrule height 1pt \vspace{0.3cm} \noindent
+            % Creates the title
+        \-\hspace{1cm} \normalsize \normalfont \citeauthor{#1} \vspace{0.1cm}\\
+            % Lists the authors
+        \-\hspace{1cm} \itshape \citeyear{#1} \vspace{0.2cm} \hrule \vspace{0.5cm}
+            % What year it was published
+        \begin{minipage}[t]{0.22\textwidth}
+            % Inserts keywords, the second argument of the environment
+            \scshape Keywords: \vspace{0.2cm} \hrule \vspace{0.2cm}
+            \normalfont \footnotesize
+            #2
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{0.69\textwidth}
+            %Inserts the abstract, the third argument of the environment
+            \scshape Abstract \vspace{0.2cm} \hrule \vspace{0.2cm}
+            \normalfont \footnotesize
+            #3
+        \end{minipage}
+        \vspace{0.3cm} \hrule \vspace{0.3cm}
+        \begin{minipage}[t]{0.3\textwidth}
+            % Inserts the citation in the bibliography
+            \scshape Bibliography Entry: \vspace{0.2cm} \hrule \vspace{0.2cm}
+            \normalfont \small #1
+        \end{minipage}
+        \vspace{0.3cm} \hrule height 1pt \vspace{0.4cm}
+        \par
+        \centering
+        \begin{minipage}[t]{0.75\textwidth}
+            \setlength{\parindent}{1.5em}
+            \noindent \scshape \large R\,e\,v\,i\,e\,w:\vspace{0.2cm}\par
+            \normalfont \small
+            % Makes the review portion smaller as to make it readable
+    }
+    {   
+        \end{minipage}
+        \par\newpage
+    }
