@@ -1,0 +1,133 @@
+\begin{review}
+        {Turney2006Similarity}
+        {N/A}
+        {
+        There are at least two kinds of similarity. 
+        \textbf{Relational similarity} is correspondence between relations, in contrast with \textbf{attributional} similarity, which is correspondence between attributes.
+        When two words have a high degree of attributional similarity, we call them \textbf{synonyms}. 
+        When two pairs of words have a high degree of relational similarity, we say that their relations are \textbf{analogous}. 
+        For example, the word pair mason:stone is analogous to the pair carpenter:wood. 
+        This article introduces Latent Relational Analysis (LRA), a method for measuring relational similarity. LRA has potential applications in many areas, including information extraction, word sense disambiguation, and information retrieval. 
+        Recently the Vector Space Model (VSM) of information retrieval has been adapted to measuring relational similarity, achieving a score of 47\% on a collection of 374 college-level multiple-choice word analogy questions. 
+        In the VSM approach, the relation between a pair of words is characterized by a vector of frequencies of predefined patterns in a large corpus. 
+        LRA extends the VSM approach in three ways: (1) The patterns are derived automatically from the corpus, (2) the Singular Value Decomposition (SVD) is used to smooth the frequency data, and (3) automatically generated synonyms are used to explore variations of the word pairs. 
+        LRA achieves 56\% on the 374 analogy questions, statistically equivalent to the average human score of 57\%. 
+        On the related problem of classifying semantic relations, LRA achieves similar gains over the VSM. 
+        © 2006 Association for Computational Linguistics.
+        }
+    This paper describes a method for measuring relational similarity (analogies) using a method the author calls \emph{Latent Semantic Analysis} (LRA).
+    LRA is a VSM approach, using the pair-pattern matrix as described in \cite{Turney2010VsmOverview}.
+    
+    The first few sections are spent describing the difference between attributional and relational similarity, what the attributional similarity has been useful for and what relational similiarity can be useful for.
+    The suggestions are improvement of the structure-mapping engine \cite{Gentner1983Structure}, improved metaphor recognition, question answering, automatic thesaurus generation etc.
+    
+    The LRA algorithm is introduced by first describing VSMs in general and then the specifics of the LRA.
+    The important specifics are that LRA uses a pair-pattern matrix.
+    For each pair it can find, it uses a thesaurus to create alternate pairs, so if the original pattern is $A : B$, it also creates the pairs $A' : B$ and $A : B'$.
+    Of all these pairs, choose only the most common ones in the corpus.
+    Then patterns that start with and ends with either $A$ or $B$ are selected.
+    The pairs are then mapped to rows of the VSM and the patterns are mapped to columns.
+    This generates a sparse matrix that is then weighted, and SVD is applied for dimensionality reduction.
+    The relational similarity is then the similarity of the row vectors.
+    Some steps are omitted in this description.
+    
+    LRA was tested on SAT questions of the form "$A$ is to $B$ as ?".
+    Five pairs of words are then given and the task is to find the one that best fit the question.
+    Using this LRA had a precision, recall and F-score of 56-57\%, which is slightly better than human average.
+    
+    The LRA seem to perform well but it took around 210 hours to complete the task, which is longer than the 3-4 hours a human have to finish all questions, not just those of this form.
+    And this is the drawback of this algorithm, it is slow due to it having to do multiple corpus lookups.
+    The SVD only took up 0.25\% of the computational time.
+    The author also claims that the code was not optimized for speed, meaning that further improvements could be made.
+    A suggestion is to use hybrid approach, combining the strengths of corpus and lexicon based methods.
+    They also suggest faster methods instead of SVD, but as previously mentioned that will not shave off much of the time.
+    
+    I think this paper is really good, I'm going study it's structure more I think.
+    It would also be cool to see if random indexing could help this, but that (from what I understand) is in place of SVD, and the big improvements can't start there.
+    I'd also like to comment the 209 hour thing.
+    9 days is a lot of time to answer those 300-400 questions, but the LRA was specifically trained to do this.
+    Most english at the age where they can take the SATs have probably used english more than 209 hours.
+    So if there was a way to update this algorithm online it could have some uses, but online SVD doesn't seem like an option from what I read [could use a source here].
+    But as mentioned, the SVM isn't really what's taking time right here.
+    
+\end{review}
+\begin{review}{Kanerva2009Hyperdimensional}
+                {Holographic reduced represantation\\
+                 Holistic record\\
+                 Holistic mapping\\
+                 Random indexing\\
+                 Cognitive code\\
+                 von Neumann architecture}
+                {
+                    The 1990s saw the emergence of cognitive models that depend on very high dimensionality and randomness. They include Holographic Reduced Representations, Spatter Code, Semantic Vectors, Latent Semantic Analysis, Context-Dependent Thinning, and Vector-Symbolic Architecture. They represent things in highdimensional vectors that are manipulated by operations that produce new high-dimensional vectors in the style of traditional computing, in what is called here hyperdimensional computing on account of the very high dimensionality. The paper presents the main ideas behind these models, written as a tutorial essay in hopes of making the ideas accessible and even provocative. A sketch of how we have arrived at these models, with references and pointers to further reading, is given at the end. The thesis of the paper is that hyperdimensional representation has much to offer to students of cognitive science, theoretical neuroscience, computer science and engineering, and mathematics. © 2009 Springer Science+Business Media, LLC.
+                }
+    This paper addresses the incompatibility of normal computing with the computing of the human brain with a simple observation: no two human brains are the same, but they can still do the same things.
+    In fact, the way a brain stores and uses knowledge is somewhat random.
+    The author suggests a new kind of computer architecture (unnamed, which is good because in my mind it's not really a complete description) that uses \emph{hyperdimensional} (cool buzzword there fella) vectors.
+    
+    Hyperdimensional vectors are just regular vectors but the author defines them as having in the order of a thousand or more elements.
+    Computing with hyperdimensional vectors differs in one main way: Representation.
+    In normal computers, a concept is (usually) represented by a unique bitstring.
+    An example would be the color red using RGB encoding, it is 0xFF0000.
+    Any bitstring (interpreted as a color) with a value different from 0xFF0000 would not be interpeted as red, or at least not the same red.
+    
+    When hyperdimensional vectors are used, a holistic (or holographic) mapping can be used instead.
+    Using the same example as before, in holistic mapping all vectors that are sufficiently similiar are interpreted as red, like 0xFD0000 or 0xFF0101 for example.
+    The paper then goes into detail on how memory and different concepts and relations can be mapped to these hyperdimensional vectors.
+    Some examples of when it works out and when it doesn't are also presented.
+    A very intersting thing to note is that this 'architecture' is random by its nature.
+    There is never a guarantee that things will work, just a very high probability.
+    This is a property that it shares with the human mind, where two different people often find the same solution to a problem despite being very different.
+    
+    The author also stresses that this is not a completed story by any means.
+    He presents many different solutions using hyperdimensional vectors and basically says that the hardware we have today is not suitable for these kind of vectors.
+    And that is really the big disadvantage of this model in my eyes.
+    It is a very different way of designing a computer than what we are used to and specialized hardware is probably the way to go.
+    
+    I think this paper is fantastic in its layout.
+    The author goes a very different route than most by not citing any previous works before the second to last section.
+    This is despite there being places where he probably should have done it.
+    But this means that there is really nothing to distract you from the core idea, that holistic mapping is a really good way to deal with a bunch of problems using simple calculations.
+    
+    I would really like to use something like this in my work, it seems really fun and interesting.
+
+\end{review}
+\begin{review}
+        {Turney2010VsmOverview}
+        {N/A}
+        {
+            Computers understand very little of the meaning of human language. 
+            This profoundly limits our ability to give instructions to computers, the ability of computers to explain their actions to us, and the ability of computers to analyse and process text. 
+            Vector space models (VSMs) of semantics are beginning to address these limits. 
+            This paper surveys the use of VSMs for semantic processing of text. 
+            We organize the literature on VSMs according to the structure of the matrix in a VSM. 
+            There are currently three broad classes of VSMs, based on term-document, word-context, and pair-pattern matrices, yielding three classes of applications. 
+            We survey a broad range of applications in these three categories and we take a detailed look at a specific open source project in each category. 
+            Our goal in this survey is to show the breadth of applications of VSMs for semantics, to provide a new perspective on VSMs for those who are already familiar with the area, and to provide pointers into the literature for those who are less familiar with the field. 
+            © 2010 AI Access Foundation and National Research Council Canada.
+        }
+    This paper tries to give a survey of the use of \emph{Vector Space Models} (VSM) in semantics research.
+    Their motivation is that there had been no study of the field as a whole.
+    They present a new framework for VSMs, i.e. they try to make the terminology used in the field consistent.
+    They also present some recent developments that had not been covered but other surveys of the field (These developments were made by Turney).
+    The applications they present are from natural language processing and computational linguistic.
+    
+    The paper, being a survey, does not present any new results.
+    The big contribution is their attempt to consolidate the terminology used in the field.
+    These are the \emph{term-document} matrix (for finding similarities between documents), the \emph{word-context} matrix (for finding \emph{attributional similarities} between words) and the \emph{pair-pattern} matrix (for finding \emph{relational similarities} between words).
+    Attributionally similar words are those that share many features (like doctor and nurse) and relationally similar words are words whose relations have a lot in common (like carpenter:wood and mason:stone).
+    The paper is fairly long and contains a lot examples and goes into detail how the VSMs are constructed, the linguistic and mathematical pre-processing that needs to done and how the different matricies can then be used.
+    They are fully aware that the matrix methods are fairly slow, but also present new research (random indexing) that can improve the computational speed.
+    
+    This paper doesn't have many weaknesses but one I'd like to point out is that it only (as it says on the cover) looks into methods using VSMs.
+    There are other methods that can be used and they use a page to briefly present them.
+    However, considering the nature of the paper that is not really a problem.
+    They also answer the question of word order in VSMs by presenting both possible and actual solution to the problem.
+    The main open question they present is if these statistical models are enough to figure out what people mean?
+    
+    I think this paper is brilliant as an introduction to VSMs.
+    It presents seemingly all views of the subject and I'm struggling to find bad things to say about it.
+    Perhaps I will find some when I learn more about the subject.
+    I really like the idea of VSMs, though considering that I will work on computers that people claim are 'less random' than humans, perhaps there are some simplifications that can be done?
+    Also, random indexing seems like the way to go!
+\end{review}

@@ -1,0 +1,39 @@
+\begin{review}
+        {Turney2010VsmOverview}
+        {N/A}
+        {
+            Computers understand very little of the meaning of human language. 
+            This profoundly limits our ability to give instructions to computers, the ability of computers to explain their actions to us, and the ability of computers to analyse and process text. 
+            Vector space models (VSMs) of semantics are beginning to address these limits. 
+            This paper surveys the use of VSMs for semantic processing of text. 
+            We organize the literature on VSMs according to the structure of the matrix in a VSM. 
+            There are currently three broad classes of VSMs, based on term-document, word-context, and pair-pattern matrices, yielding three classes of applications. 
+            We survey a broad range of applications in these three categories and we take a detailed look at a specific open source project in each category. 
+            Our goal in this survey is to show the breadth of applications of VSMs for semantics, to provide a new perspective on VSMs for those who are already familiar with the area, and to provide pointers into the literature for those who are less familiar with the field. 
+            © 2010 AI Access Foundation and National Research Council Canada.
+        }
+    This paper tries to give a survey of the use of \emph{Vector Space Models} (VSM) in semantics research.
+    Their motivation is that there had been no study of the field as a whole.
+    They present a new framework for VSMs, i.e. they try to make the terminology used in the field consistent.
+    They also present some recent developments that had not been covered but other surveys of the field (These developments were made by Turney).
+    The applications they present are from natural language processing and computational linguistic.
+    
+    The paper, being a survey, does not present any new results.
+    The big contribution is their attempt to consolidate the terminology used in the field.
+    These are the \emph{term-document} matrix (for finding similarities between documents), the \emph{word-context} matrix (for finding \emph{attributional similarities} between words) and the \emph{pair-pattern} matrix (for finding \emph{relational similarities} between words).
+    Attributionally similar words are those that share many features (like doctor and nurse) and relationally similar words are words whose relations have a lot in common (like carpenter:wood and mason:stone).
+    The paper is fairly long and contains a lot examples and goes into detail how the VSMs are constructed, the linguistic and mathematical pre-processing that needs to done and how the different matricies can then be used.
+    They are fully aware that the matrix methods are fairly slow, but also present new research (random indexing) that can improve the computational speed.
+    
+    This paper doesn't have many weaknesses but one I'd like to point out is that it only (as it says on the cover) looks into methods using VSMs.
+    There are other methods that can be used and they use a page to briefly present them.
+    However, considering the nature of the paper that is not really a problem.
+    They also answer the question of word order in VSMs by presenting both possible and actual solution to the problem.
+    The main open question they present is if these statistical models are enough to figure out what people mean?
+    
+    I think this paper is brilliant as an introduction to VSMs.
+    It presents seemingly all views of the subject and I'm struggling to find bad things to say about it.
+    Perhaps I will find some when I learn more about the subject.
+    I really like the idea of VSMs, though considering that I will work on computers that people claim are 'less random' than humans, perhaps there are some simplifications that can be done?
+    Also, random indexing seems like the way to go!
+\end{review}

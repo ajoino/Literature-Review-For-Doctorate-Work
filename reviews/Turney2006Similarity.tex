@@ -1,0 +1,53 @@
+\begin{review}
+        {Turney2006Similarity}
+        {N/A}
+        {
+        There are at least two kinds of similarity. 
+        \textbf{Relational similarity} is correspondence between relations, in contrast with \textbf{attributional} similarity, which is correspondence between attributes.
+        When two words have a high degree of attributional similarity, we call them \textbf{synonyms}. 
+        When two pairs of words have a high degree of relational similarity, we say that their relations are \textbf{analogous}. 
+        For example, the word pair mason:stone is analogous to the pair carpenter:wood. 
+        This article introduces Latent Relational Analysis (LRA), a method for measuring relational similarity. LRA has potential applications in many areas, including information extraction, word sense disambiguation, and information retrieval. 
+        Recently the Vector Space Model (VSM) of information retrieval has been adapted to measuring relational similarity, achieving a score of 47\% on a collection of 374 college-level multiple-choice word analogy questions. 
+        In the VSM approach, the relation between a pair of words is characterized by a vector of frequencies of predefined patterns in a large corpus. 
+        LRA extends the VSM approach in three ways: (1) The patterns are derived automatically from the corpus, (2) the Singular Value Decomposition (SVD) is used to smooth the frequency data, and (3) automatically generated synonyms are used to explore variations of the word pairs. 
+        LRA achieves 56\% on the 374 analogy questions, statistically equivalent to the average human score of 57\%. 
+        On the related problem of classifying semantic relations, LRA achieves similar gains over the VSM. 
+        © 2006 Association for Computational Linguistics.
+        }
+    This paper describes a method for measuring relational similarity (analogies) using a method the author calls \emph{Latent Semantic Analysis} (LRA).
+    LRA is a VSM approach, using the pair-pattern matrix as described in \cite{Turney2010VsmOverview}.
+    
+    The first few sections are spent describing the difference between attributional and relational similarity, what the attributional similarity has been useful for and what relational similiarity can be useful for.
+    The suggestions are improvement of the structure-mapping engine \cite{Gentner1983Structure}, improved metaphor recognition, question answering, automatic thesaurus generation etc.
+    
+    The LRA algorithm is introduced by first describing VSMs in general and then the specifics of the LRA.
+    The important specifics are that LRA uses a pair-pattern matrix.
+    For each pair it can find, it uses a thesaurus to create alternate pairs, so if the original pattern is $A : B$, it also creates the pairs $A' : B$ and $A : B'$.
+    Of all these pairs, choose only the most common ones in the corpus.
+    Then patterns that start with and ends with either $A$ or $B$ are selected.
+    The pairs are then mapped to rows of the VSM and the patterns are mapped to columns.
+    This generates a sparse matrix that is then weighted, and SVD is applied for dimensionality reduction.
+    The relational similarity is then the similarity of the row vectors.
+    Some steps are omitted in this description.
+    
+    LRA was tested on SAT questions of the form "$A$ is to $B$ as ?".
+    Five pairs of words are then given and the task is to find the one that best fit the question.
+    Using this LRA had a precision, recall and F-score of 56-57\%, which is slightly better than human average.
+    
+    The LRA seem to perform well but it took around 210 hours to complete the task, which is longer than the 3-4 hours a human have to finish all questions, not just those of this form.
+    And this is the drawback of this algorithm, it is slow due to it having to do multiple corpus lookups.
+    The SVD only took up 0.25\% of the computational time.
+    The author also claims that the code was not optimized for speed, meaning that further improvements could be made.
+    A suggestion is to use hybrid approach, combining the strengths of corpus and lexicon based methods.
+    They also suggest faster methods instead of SVD, but as previously mentioned that will not shave off much of the time.
+    
+    I think this paper is really good, I'm going study it's structure more I think.
+    It would also be cool to see if random indexing could help this, but that (from what I understand) is in place of SVD, and the big improvements can't start there.
+    I'd also like to comment the 209 hour thing.
+    9 days is a lot of time to answer those 300-400 questions, but the LRA was specifically trained to do this.
+    Most english at the age where they can take the SATs have probably used english more than 209 hours.
+    So if there was a way to update this algorithm online it could have some uses, but online SVD doesn't seem like an option from what I read [could use a source here].
+    But as mentioned, the SVM isn't really what's taking time right here.
+    
+\end{review}
