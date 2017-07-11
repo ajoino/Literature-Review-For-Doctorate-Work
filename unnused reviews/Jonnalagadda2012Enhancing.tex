@@ -1,0 +1,24 @@
+\begin{review}{Jonnalagadda2012Enhancing}
+			{
+				NLP\\
+				Information extraction\\
+				NER\\
+				Distributional semantics\\
+				Clinical informatics
+			}
+			{
+				Extracting concepts (such as drugs, symptoms, and diagnoses) from clinical narratives constitutes a basic enabling technology to unlock the knowledge within and support more advanced reasoning applications such as diagnosis explanation, disease progression modeling, and intelligent analysis of the effectiveness of treatment. 
+				The recent release of annotated training sets of de-identified clinical narratives has contributed to the development and refinement of concept extraction methods. However, as the annotation process is labor-intensive, training data are necessarily limited in the concepts and concept patterns covered, which impacts the performance of supervised machine learning applications trained with these data. 
+				This paper proposes an approach to minimize this limitation by combining supervised machine learning with empirical learning of semantic relatedness from the distribution of the relevant words in additional unannotated text.
+				The approach uses a sequential discriminative classifier (Conditional Random Fields) to extract the mentions of medical problems, treatments and tests from clinical narratives. 
+				It takes advantage of all Medline abstracts indexed as being of the publication type " clinical trials" to estimate the relatedness between words in the i2b2/VA training and testing corpora. 
+				In addition to the traditional features such as dictionary matching, pattern matching and part-of-speech tags, we also used as a feature words that appear in similar contexts to the word in question (that is, words that have a similar vector representation measured with the commonly used cosine metric, where vector representations are derived using methods of distributional semantics). 
+				To the best of our knowledge, this is the first effort exploring the use of distributional semantics, the semantics derived empirically from unannotated text often using vector space models, for a sequence classification task such as concept extraction.
+				Therefore, we first experimented with different sliding window models and found the model with parameters that led to best performance in a preliminary sequence labeling task.
+				The evaluation of this approach, performed against the i2b2/VA concept extraction corpus, showed that incorporating features based on the distribution of words across a large unannotated corpus significantly aids concept extraction. Compared to a supervised-only approach as a baseline, the micro-averaged F-score for exact match increased from 80.3\% to 82.3\% and the micro-averaged F-score based on inexact match increased from 89.7\% to 91.3\%. 
+				These improvements are highly significant according to the bootstrap resampling method and also considering the performance of other systems. 
+				Thus, distributional semantic features significantly improve the performance of concept extraction from clinical narratives by taking advantage of word distribution information obtained from unannotated data. 
+				© 2011 Elsevier Inc.
+			}
+	
+\end{review}
